@@ -1,0 +1,49 @@
+type DAO @entity {
+  id: ID!
+  address: Bytes!
+  name: String!
+  reputation: Reputation!
+  members: [Member!] @derivedFrom(field: "dao")
+  proposals: [ReputationProposal!] @derivedFrom(field: "dao")
+}
+
+type Member @entity {
+  id: ID!
+  address: Bytes!
+  dao: DAO!
+  reputation: BitInt!
+}
+
+type Reputation @entity {
+  id: ID!
+  address: Bytes!
+  dao: DAO
+  totalSupply: BitInt!
+}
+
+type ReputationProposal @entity {
+  id: ID!
+  address: Bytes!
+  dao: DAO!
+  active: Boolean!
+  proposer: Bytes!
+  createdAt: BigInt!
+  executedAt: BitInt
+  totalRepWhenExecuted: BigInt
+
+  descriptionHash: String!
+  title: String
+  description: String
+
+  votes: [Vote!] @derivedFrom(field: "proposal")
+  votesFor: BigInt!
+}
+
+type Vote @entity {
+  id: ID!
+  createdAt: BigInt!
+  voter: Bytes!
+  proposal: Proposal!
+  dao: DAO!
+  reputation: BigInt!
+}

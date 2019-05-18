@@ -1,0 +1,4 @@
+type DAONetworkContract @entity {
+  id: ID!
+  address: Bytes!
+}

@@ -1,0 +1,15 @@
+abis:
+  - DAONetwork
+eventHandlers:
+  - event: NewDAO(address,address)
+    handler: handleNewDAO
+  - event: MintReputation(address,address,uint256,address)
+    handler: handleMintReputation
+  - event: BurnReputation(address,address,uint256,address)
+    handler: handleBurnReputation
+  - event: ReputationProposalCreated(address,bytes32,address,string,int256,address)
+    handler: handleReputationProposalCreated
+  - event: ReputationProposalExecuted(address,bytes32)
+    handler: handleReputationProposalExecuted
+  - event: VoteCast(address,bytes32,address,uint256,uint256)
+    handler: handleVoteCast
