@@ -93,9 +93,10 @@ async function createProposal(
 
   // 3.
   Logger.info("Create the proposal...");
+  const daoAddress = await entity.getData("address");
   const daoNetwork = Contracts.DAONetwork.deployed();
   const tx = await daoNetwork.createProposal(
-    await entity.getData("address"),
+    daoAddress,
     hash,
     reputationChange,
     beneficiary
@@ -104,7 +105,7 @@ async function createProposal(
     tx, "ReputationProposalCreated", "_proposalId"
   );
   Logger.info(`Proposal ID: ${proposalId}`);
-  Output.add({ proposalId })
+  Output.add({ proposalId });
 }
 
 async function voteOnProposal(
