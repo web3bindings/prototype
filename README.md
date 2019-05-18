@@ -25,6 +25,7 @@ The **Web3 API Bindings Generator (Generator)** takes in the smart contract ABIs
 3. *Extensibility*: Application layer methods can utilize outside services (IPFS, Swarm, etc).
 
 ## Architecture Specification  
+![logo](https://github.com/web3bindings/branding/blob/master/architecture.png)
 ### Contract Metadata: Protocol Object Model (POM)
 TODO: describe that the metadata should have two parts (read & write). They should refer to a shared entity hiearchy / ontology. Also don't forget about the root data (contract ABIs).  
 
