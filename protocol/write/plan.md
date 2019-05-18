@@ -1,2 +1,5 @@
+# Protocol - Write Semantics  
+## Description  
 typescript write semantics that compile to a wasm module  
-TODO: document what runtime interface the ?generate? needs to support?
+TODO: document the runtime interface the write semantic standard will support
+TODO: document the POM (Protocol Object Model) that gets exported by this module

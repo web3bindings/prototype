@@ -1,3 +1,7 @@
+// !NOTE: This code assumes the presence of a write-semantics/runtime library.
+//        Given the time constraints of this hackathon, implementing this runtime is out of scope.
+//        Please view this file as an ideal development environment that will be functional
+//        in the future.
 import {
   IPFS,
   Contracts,
