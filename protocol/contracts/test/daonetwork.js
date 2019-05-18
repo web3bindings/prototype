@@ -22,6 +22,10 @@ const deployDAO = async function() {
   return await daoNetwork.newDAO(avatar.address);
 }
 
+const registerFounder = async function(founder) {
+  return await daoNetwork.registerFounder(avatar.address, founder);
+}
+
 const createProposal = async function(accounts, repChange=-500) {
   return await daoNetwork.createProposal(
     avatar.address,
@@ -51,6 +55,24 @@ contract("DAONetwork", accounts => {
     assert.equal(
       helpers.getValueFromLogs(tx, "_avatar"),
       avatar.address
+    );
+  });
+
+  it("registerFounder", async function() {
+    await setup(accounts);
+    await deployDAO();
+
+    const tx = await registerFounder(accounts[0]);
+
+    assert.equal(tx.logs.length, 1);
+    assert.equal(tx.logs[0].event, "RegisterFounder");
+    assert.equal(
+      helpers.getValueFromLogs(tx, "_avatar"),
+      avatar.address
+    );
+    assert.equal(
+      helpers.getValueFromLogs(tx, "_founder"),
+      accounts[0]
     );
   });
 

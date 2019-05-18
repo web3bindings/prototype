@@ -43,6 +43,11 @@ contract DAONetwork {
     address indexed _avatar
   );
 
+  event RegisterFounder(
+    address indexed _avatar,
+    address indexed _founder
+  );
+
   event MintReputation(
     address indexed _sender,
     address indexed _to,
@@ -116,6 +121,19 @@ contract DAONetwork {
     daos[address(_avatar)].reputation = reputation;
 
     emit NewDAO(msg.sender, address(_avatar));
+  }
+
+  function registerFounder(
+    Avatar _avatar,
+    address payable _founder
+  )
+  external
+  onlyMember(_avatar, _founder)
+  {
+    emit RegisterFounder(
+      address(_avatar),
+      _founder
+    );
   }
 
   /**
