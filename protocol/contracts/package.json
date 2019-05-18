@@ -1,0 +1,11 @@
+{
+  "name": "@web3bindings/prototype-protocol",
+  "version": "0.0.0-alpha",
+  "scripts": {
+    "build": "truffle compile",
+    "test": "truffle test"
+  },
+  "dependencies": {
+    "openzeppelin-solidity": "2.1.3"
+  }
+}

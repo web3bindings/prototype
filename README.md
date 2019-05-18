@@ -30,6 +30,9 @@ TODO: describe the goal of this
 
 #### Write Semantics  
 TODO: describe the goal of this  
+TODO: describe that it'll be sitting in a runtime environment
+      that provides everything it needs (defined by standard)
+TODO: describe a standard for Web3 + Typescript + WASM + Browser app
 
 ### Publishing  
 TODO: describe the purpose of this (source of truth for the generator)  
