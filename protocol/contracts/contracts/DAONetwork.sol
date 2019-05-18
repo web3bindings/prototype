@@ -204,6 +204,11 @@ contract DAONetwork {
 
     // If more than 50% of total reputation holders have voted for a proposal
     if (proposal.votesFor > (totalReputation/2)) {
+      emit ReputationProposalExecuted(
+        address(_avatar),
+        _proposalId
+      );
+
       // execute it
       proposal.open = false;
       if (proposal.reputationChange > 0) {
