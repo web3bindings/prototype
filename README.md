@@ -1,28 +1,32 @@
+![logo](https://github.com/web3bindings/branding/blob/master/logo/logo.png)
 # Web3Bindings  
-A developer toolchain that auto generates application layer interfaces for smart contract protocols.  
+*A developer toolchain that auto generates application layer interfaces for smart contract protocols.*
 
-## Problem To Solve  
-TODO: refine this...  
-- Everyone writing their own JS wrappers around their contracts  
-- Web3.js's "Contract" class doesn't cut it, too low level  
+## Problem
 
-**"Contract Protocols aren't fit for applications"**  
-1. Complex and not simple to interact with
-2. not written for applicaton developers
-3. Different set of contratins than application developers
-   1. Code Bloat
-   2. Minimize State Changes
-   3. Minimize Storage
-4. Make use of outside service identifiers (IPFS, SWARM, etc)
-   1. Leaves it up to the user of the protocol to know how to properly add these idenfiers
+Smart contracts are not optimized for application development.
 
-- We don't want to be constricted to JS (the browser) because a smart contract protocol should be accessible in any type of application.
+Current protocols build their own language-specific wrappers to make their smart contracts accessible to dApp developers. They wrap their smart contract ABIs with web3.js, define common read and write patterns, and expose them in an API. As a result, dApp devs depend on protocol devs to maintain these wrappers for their applications to use.
 
-## Solution  
-Create a standard for publishing smart contract metadata which describes how to semantically read & write to & from your protocol. This metadata is then used by generators to automatically create application layer interface for your protocol.  
+So the question becomes, **how can smart contract developers easily maintain highly-usable, language-independent APIs for their protocols?**
+
+
+## Solution
+We created a standard for publishing smart contract metadata which describes how to semantically read & write to & from your protocol. This metadata is then used by generators to automatically create application layer interface for your protocol.  
+
+The **Protocol Object Model (POM)** is a metadata standard that defines the logical structure of a protocol and the way data is accessed and manipulated through queries & actions. The POM represents a protocol with a logical tree.
+
+The **Web3 API Bindings Generator (Generator)** takes in the smart contract ABIs and associated metadata (POM) and outputs a complete API in the supported language of choice.
+
+
+## Design Goals
+1. *Cross-Platform*: Object model definition is separated from the framework/language.
+2. *Abstraction*: Complex queries and actions at the protocol layer are abstracted into simple methods at the application layer.
+3. *Extensibility*: Application layer methods can utilize outside services (IPFS, Swarm, etc).
 
 ## Architecture Specification  
-### Contract Metadata  
+![logo](https://github.com/web3bindings/branding/blob/master/architecture.png)
+### Contract Metadata: Protocol Object Model (POM)
 TODO: describe that the metadata should have two parts (read & write). They should refer to a shared entity hiearchy / ontology. Also don't forget about the root data (contract ABIs).  
 
 #### Read Semantics  
@@ -34,8 +38,8 @@ TODO: describe that it'll be sitting in a runtime environment
       that provides everything it needs (defined by standard)
 TODO: describe a standard for Web3 + Typescript + WASM + Browser app
 
-### Publishing  
-TODO: describe the purpose of this (source of truth for the generator)  
+#### Publishing  
+Anyone can publsh the POM metadata for a protocol, which acts as the source of truth for the Web3Bindings Generator.
 ```json
 {
   "name": "MyProtocol",
@@ -66,7 +70,7 @@ TODO: describe the purpose of this (source of truth for the generator)
 }
 ```
 
-### API Generators  
+### Web3 API Bindings Generator 
 TODO: describe the different parts of the generator...  
 - How it will be invoked (standard CLI)  
 - Where it will output the files  
