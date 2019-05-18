@@ -1,6 +1,13 @@
+type DAONetwork @entity {
+  id: ID!
+  address: Bytes!
+  daos: [DAO!] @derivedFrom(field: "network")
+}
+
 type DAO @entity {
   id: ID!
   address: Bytes!
+  network: DAONetwork!
   name: String!
   reputation: Reputation!
   members: [Member!] @derivedFrom(field: "dao")

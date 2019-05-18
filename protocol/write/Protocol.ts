@@ -21,8 +21,11 @@ export interface Founder {
 
 async function createDAO(
   name: string,
-  founders: Founder[]
+  founders: Founder[],
+  entity: Entity
 ) {
+  entity.typeCheck("DAONetwork");
+
   // 1.
   Logger.info("Deploying a new Reputation contract...");
   const reputation = await Contracts.Reputation.new();
@@ -41,7 +44,8 @@ async function createDAO(
 
   // 3.
   Logger.info("Transfer the Reputation's ownership to the DAONetwork...");
-  const daoNetwork = Contracts.DAONetwork.deployed();
+  const daoNetworkAddress = await entity.getData("address");
+  const daoNetwork = Contracts.DAONetwork.at(daoNetworkAddress);
   await reputation.transferOwnership(daoNetwork.address);
 
   // 4.
@@ -105,7 +109,9 @@ async function createProposal(
   // 3.
   Logger.info("Create the proposal...");
   const daoAddress = await entity.getData("address");
-  const daoNetwork = Contracts.DAONetwork.deployed();
+  const daoNetworkEntity = await entity.getConnection("network");
+  const daoNetworkAddress = await daoNetworkEntity.getData("address");
+  const daoNetwork = Contracts.DAONetwork.at(daoNetworkAddress);
   const tx = await daoNetwork.createProposal(
     daoAddress,
     hash,
@@ -138,7 +144,9 @@ async function voteOnProposal(
 
   // 2.
   Logger.info(`Casting a vote on behalf of ${Account.address} for the amount of ${balance} REP...`);
-  const daoNetwork = Contracts.DAONetwork.deployed();
+  const daoNetworkEntity = await daoEntity.getConnection("network");
+  const daoNetworkAddress = await daoNetworkEntity.getData("address");
+  const daoNetwork = Contracts.DAONetwork.at(daoNetworkAddress);
   const proposalId = await entity.getData("id");
   const tx = await daoNetwork.vote(
     daoAddress,
