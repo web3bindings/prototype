@@ -1,5 +1,0 @@
-entities:
-  - AvatarContract
-eventHandlers:
-  - event: OwnershipTransferred(address,address)
-    handler: handleOwnershipTransferred
