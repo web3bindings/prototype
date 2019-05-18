@@ -1,5 +1,7 @@
 abis:
   - DAONetwork
+  - Avatar
+  - Reputation
 eventHandlers:
   - event: NewDAO(address,address)
     handler: handleNewDAO

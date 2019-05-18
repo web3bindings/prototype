@@ -1,0 +1,12 @@
+{
+  "private":
+    {
+      "mappings": [
+      {
+        "name": "DAONetwork",
+        "contractName": "DAONetwork",
+        "mapping": "DAOToken"
+      }
+    ]
+  }
+}
