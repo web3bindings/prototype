@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "asbuild:optimized": "asc Protocol.ts -b build/Protocol.wasm -t build/Protocol.wat --sourceMap --validate --optimize",
+    "asbuild": "npm run asbuild:optimized"
+  }
+}
