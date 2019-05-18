@@ -6,7 +6,8 @@
   },
   "scripts": {
     "build": "truffle compile",
-    "test": "truffle test"
+    "test": "truffle test",
+    "migrate": "truffle migrate"
   },
   "dependencies": {
     "openzeppelin-solidity": "2.1.3"

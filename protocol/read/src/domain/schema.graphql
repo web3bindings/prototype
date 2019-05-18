@@ -18,14 +18,14 @@ type Member @entity {
   id: ID!
   address: Bytes!
   dao: DAO!
-  reputation: BitInt!
+  reputation: BigInt!
 }
 
 type Reputation @entity {
   id: ID!
   address: Bytes!
   dao: DAO
-  totalSupply: BitInt!
+  totalSupply: BigInt!
 }
 
 type ReputationProposal @entity {
@@ -36,7 +36,7 @@ type ReputationProposal @entity {
   beneficiary: Bytes!
   reputationChange: BigInt!
   createdAt: BigInt!
-  executedAt: BitInt
+  executedAt: BigInt
 
   descriptionHash: String!
   title: String
@@ -50,7 +50,7 @@ type Vote @entity {
   id: ID!
   createdAt: BigInt!
   voter: Bytes!
-  proposal: Proposal!
+  proposal: ReputationProposal!
   dao: DAO!
   reputation: BigInt!
 }

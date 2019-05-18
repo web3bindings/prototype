@@ -43,7 +43,7 @@ async function generateSubgraph () {
         apiVersion: '0.0.1',
         language: 'wasm/assemblyscript',
         file: file,
-        entities,
+        entities: entities ? entities : [],
         abis,
         eventHandlers
       }

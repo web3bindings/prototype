@@ -5,7 +5,7 @@
       {
         "name": "DAONetwork",
         "contractName": "DAONetwork",
-        "mapping": "DAOToken"
+        "mapping": "DAONetwork"
       }
     ]
   }
