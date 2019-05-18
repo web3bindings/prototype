@@ -57,6 +57,13 @@ async function createDAO(
   Logger.info("Create a new DAO in the network...");
   await daoNetwork.newDAO(avatar.address);
 
+  // 7.
+  Logger.info("Register our founders...");
+  for (const founder of founders) {
+    await daoNetwork.registerFounder(avatar.address, founder.address);
+    Logger.info(`Registered ${founder.address} within the DAO at ${avatar.address}`);
+  }
+
   Output.add({
     reputation: reputation.address,
     daoAddress: avatar.address

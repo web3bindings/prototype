@@ -1,5 +1,6 @@
 import {
   NewDAO,
+  RegisterFounder,
   MintReputation,
   BurnReputation,
   ReputationProposalCreated,
@@ -11,10 +12,10 @@ import * as domain from "../../domain";
 
 export function handleNewDAO(event: NewDAO): void {
   domain.handleNewDAO(event);
-  // TODO:
-  // store new DAO
-  // Problem: lookup existing members from the Reputation contract (need templates...)
-  // Solution: Add method to DAONetwork that emits an event for a founder
+}
+
+export function handleRegisterFounder(event: RegisterFounder): void {
+  domain.handleRegisterFounder(event);
 }
 
 export function handleMintReputation(event: MintReputation): void {
