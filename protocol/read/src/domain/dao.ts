@@ -21,7 +21,7 @@ export function insertNewDAO(
   avatarAddress: Address
 ): DAO {
   let avatar = Avatar.bind(avatarAddress);
-  let reputationAddress = avatar.nativeReputation;
+  let reputationAddress = avatar.nativeReputation();
   let dao = getDAO(avatarAddress.toHex());
   dao.address = avatarAddress.toHex();
   dao.network = getDAONetwork(daoNetworkAddress);

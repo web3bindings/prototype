@@ -1,6 +1,7 @@
-import { store } from "@graphprotocol/graph-ts";
+import { Address, store } from "@graphprotocol/graph-ts";
 import { hexToAddress } from "../utils";
 import { Reputation, DAO } from "../types/schema";
+import { Avatar } from "../types/Avatar";
 import { Reputation as ReputationContract } from "../types/Reputation";
 
 export function getReputation(id: string): Reputation {
@@ -22,5 +23,14 @@ function saveReputation(reputation: Reputation): void {
 export function setDAO(id: string, dao: DAO): void {
   let reputation = getReputation(id);
   reputation.dao = dao;
+  saveReputation(reputation);
+}
+
+export function updateTotalSupply(avatarAddress: Address): void {
+  let avatar = Avatar.bind(avatarAddress)
+  let reputationAddress = avatar.nativeReputation();
+  let reputationContract = ReputationContract.bind(reputationAddress);
+  let reputation = getReputation(reputationAddress.toHex());
+  reputation.totalSupply = reputationContract.totalSupply();
   saveReputation(reputation);
 }
