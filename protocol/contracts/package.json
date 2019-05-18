@@ -1,6 +1,9 @@
 {
-  "name": "@web3bindings/prototype-protocol",
+  "name": "@web3bindings/prototype-protocol-contracts",
   "version": "0.0.0-alpha",
+  "engines": {
+    "node": ">=9.4.0"
+  },
   "scripts": {
     "build": "truffle compile",
     "test": "truffle test"

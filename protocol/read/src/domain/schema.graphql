@@ -30,13 +30,13 @@ type Reputation @entity {
 
 type ReputationProposal @entity {
   id: ID!
-  address: Bytes!
   dao: DAO!
   active: Boolean!
   proposer: Bytes!
+  beneficiary: Bytes!
+  reputationChange: BigInt!
   createdAt: BigInt!
   executedAt: BitInt
-  totalRepWhenExecuted: BigInt
 
   descriptionHash: String!
   title: String

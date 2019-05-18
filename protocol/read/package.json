@@ -1,0 +1,14 @@
+{
+  "name": "@web3bindings/prototype-protocol-read",
+  "version": "0.0.0-alpha",
+  "engines": {
+    "node": ">=9.4.0"
+  },
+  "scripts": {
+    "codegen": "node ops/generate-abis.js && node ops/generate-schema.js && node ops/generate-subgraph.js && node ops/graph-codegen.js"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "^0.12.0",
+    "@graphprotocol/graph-ts": "^0.12.0"
+  }
+}
