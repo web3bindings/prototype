@@ -1,0 +1,1 @@
+subgraph project that creates a graphql schema from our contract events
