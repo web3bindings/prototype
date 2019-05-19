@@ -25,22 +25,22 @@ Together, the Web3Bindings POM and API Generator makes contract protocols access
 ## Architecture Specification  
 ![logo](https://github.com/web3bindings/branding/blob/master/architecture.png)
 ### Contract Metadata: Protocol Object Model (POM)
-The POM represents a protocol with a logical graph. The contract metadata has two parts: 'read' (i.e.  ) and 'write' (i.e. ). Both parts refer to a shared ontology defined by the protocol. The POM pulls from the root contract ABIs.
+The POM represents a protocol with a logical graph. The contract metadata has two parts: 'read' and 'write'. Both parts refer to a shared ontology defined by the protocol.  
 
 #### Read Semantics  
-The goal of the 'read' semantics is to define structured *queries* over your contract data.
+The goal of the 'read' semantics is to define structured *queries* over your contract data.  
 
-The semantic creates a Subgraph module with an GraphQL Schema and Mapping File.
+The read semantic standard this exmaple project uses is a Subgraph (The Graph), which defines a GraphQL Schema and Mapping File.  
 
 #### Write Semantics  
 The goal of the 'write' semantics is to bundle complex contract transactions (and external service interactions) into simple *actions* for the application developer to use.
 
-The semantic ([`Proposal.create("infomation", imageByteCode, 5ETH)`]) sits in a runtime environment (WASM module) that provides methods (ABI.json), contract code comments (RADSPEC), and service connection (IPFS, Web3, etc).
+The write semantic standard is not currently developed, but this project aims to articulate an ideal development environment which can be seen here: `protocol-example/write/Protocol.ts`.  
 
-This can be used as a standard for the creation of a Web3 + Typescript + WASM + Browser application interface for dApp developers.
+The semantic ([`Proposal.create("infomation", imageByteCode, 5ETH)`]) sits in a runtime environment (WASM module) and has access to contracts and service connection (IPFS, Web3, etc).  
 
 #### Publishing  
-Anyone can publsh the POM metadata for a protocol, which acts as the source of truth for the **Web3Bindings Generator**.
+Anyone can publsh the POM metadata for a protocol, which acts as the source of truth for the **Web3Bindings Generator**.  
 ```json
 {
   "name": "MyProtocol",
@@ -71,85 +71,25 @@ Anyone can publsh the POM metadata for a protocol, which acts as the source of t
 }
 ```
 
-### Web3 API Bindings Generator
-TODO: describe the different parts of the generator...  
-- How it will be invoked (standard CLI)  
-- Where it will output the files  
-- How upgrades should be handled (web3bindings-lock.json)  
-- Best practices  
-  - don't version your generated files  
-  - provide easy build pipeline integration [C#? .csproj build target. Rust? Cargo package, etc]  
+### Web3Bindings Generator
+The Web3Bindings Generator takes as input the published package described above, and outputs a language & framework specific API. An example of this can be seen here: `protocol-example.ts`  
 
 ### Example  
+For this project, we took HEAVY inspiration from The Graph & DAOstack projects. In our boiled example, we created a simple, but complex, set of smart contracts that implements a very primitive DAO.  
+
 #### Contracts  
-TODO: example contracts  
+Read more [here](./protocol-example/protocol/README.md).  
 
 #### Read Semantics  
-TODO: subgraph example  
-+ Subgraph  
-  - GraphQL Schema  
-  - Mapping File  
+Read more [here](./protocol-example/read/README.md).  
 
 #### Write Semantics  
-TODO: typescript -> WASM module example  
-- Write Semantics [`Proposal.create("infomation", imageByteCode, 5ETH)`]  
-  + *WASM Module (Mapping File)  
-    -> ABI.json (get methods)  
-    -> Contract Code Comments (RADSPEC) (validate input & provide more info)  
-    -> Service Connection (IPFS, Web3, etc)  
-
-```typescript
-// MyProtocol.WASM
-import {
-  ipfs,
-  contracts,
-  UserContext
-} from "web3bindings";
-
-function createProposal(
-  title: string,
-  description: string,
-  image: bytes,
-  context: UserContext
-): Results[] {
-  let results = [];
-
-  // 1. upload data to ipfs
-  const hash = ipfs.upload({
-    title,
-    description
-  });
-
-  results.push(new IPFSUpload(hash));
-
-  // 2. form transaction
-  const tx = {
-    from: context.accountAddress,
-    to: contracts.MyDAO.methods.createProposal,
-    data: Web3.EncodeParams(title, hash)
-  };
-
-  // 3. post proposal
-  const pendingTransaction = context.sendTransaction(tx);
-
-  results.push(new Transaction(pendingTransaction));
-
-  return results;
-}
-
-export DAO = {
-  createProposal
-}
-```
-
-#### Application Integration  
-TODO: node.js project example  
+Read more [here](./protocol-example/write/README.md).  
 
 #### Generated API  
-TODO: example user usage example + behind the scenes what's happening  
+An example API that can be generated is shown here: `./protocol-example.ts/`. Here's what using this library might look like:  
 ```typescript
-// app dev (daostack/client library equivalent)
 const dao = new DAO()
-dao.createProposal("info", "etc") -> write semantic
-dao.getMembers() -> read semantic (subgraph)
+dao.createProposal("info", "etc") // write semantic
+await dao.getMembers() // read semantic (subgraph)
 ```
