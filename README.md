@@ -37,7 +37,7 @@ The goal of the 'write' semantics is to bundle complex contract transactions (an
 
 The write semantic standard is not currently developed, but this project aims to articulate an ideal development environment which can be seen here: `protocol-example/write/Protocol.ts`.  
 
-The semantic ([`Proposal.create("infomation", imageByteCode, 5ETH)`]) sits in a runtime environment (WASM module) and has access to contracts and service connection (IPFS, Web3, etc).  
+The semantic (`Proposal.create("infomation", ...)`) sits in a runtime environment (WASM module) and has access to contracts and service connection (IPFS, Web3, etc).  
 
 #### Publishing  
 Anyone can publsh the POM metadata for a protocol, which acts as the source of truth for the **Web3Bindings Generator**.  
