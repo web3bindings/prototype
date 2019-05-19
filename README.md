@@ -18,7 +18,7 @@ Together, the Web3Bindings POM and API Generator makes contract protocols access
 
 ## Design Goals
 
-1. *Cross-Platform*: Object model definition is separated from the framework/language.
+1. *Separation*: Object model definition is separated from the framework/language.
 2. *Abstraction*: Complex queries and actions at the protocol layer are abstracted into simple methods at the application layer.
 3. *Extensibility*: Application layer methods can utilize outside services (IPFS, Swarm, etc).
 
