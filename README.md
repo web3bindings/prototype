@@ -5,22 +5,22 @@
 ## Problem
 Smart contracts are not optimized for application development.
 
-Currently, protocols build their own language-specific wrappers to make their smart contracts accessible to dApp developers. They wrap their smart contract application binary interfaces (ABIs) with web3.js, define common read and write patterns, and expose them in an API. As a result, dApp developers are dependent on protocol developers to maintain these wrappers for their applications to use.
+Currently, protocols build their own language-specific wrappers to make their smart contracts accessible to dApp developers. Developers usually utilize web3.js to write a wrapper for their smart contract protocols. These wrappers aim to define common read and write patterns for application developers to use. As a result, dApp developers are dependent on protocol developers to maintain these wrappers.
 
 So the question becomes, **how can smart contract developers easily maintain highly-usable and language-independent APIs for their protocols?**
 
 ## Solution
-We created the **Protocol Object Model (POM)** - a metadata standard for publishing smart contract metadata which describes semantics for reading and writing to/from a contract protocol. This standard defines the logical structure of a protocol and the way data is accessed and manipulated through queries & actions.
+We created the **Protocol Object Model (POM)** - a standard for publishing smart contract metadata which describes semantics for reading and writing to/from a contract protocol. This standard defines the logical structure of a protocol, and the way data is accessed and manipulated through queries & actions.
 
-The **Web3Bindings Generator (API Generator)** takes in the smart contract ABIs and associated metadata (POM) and outputs a complete API for application layer interfaces in the supported language of choice.
+The **Web3Bindings Generator (API Generator)** takes in the smart contract ABIs and associated metadata (POM), then outputs a complete API for application to use in their language of choice.
 
-Together, the Web3Bindings POM and API Generator makes contract protocols accessible across any language & framework via API generation. Generators can be made for any Web2 UI library (i.e. Vue, React) which gives protocol developers the ability to support multiple languages & frameworks instead of one. This expands the capacity of Web3 development while making it more accessible for application developers across disciplines.
+Together, the Web3Bindings POM and API Generator makes contract protocols accessible across any language & framework via API generation. Generators can be made for any language or framework. This makes the Web3 development pipeline more efficient while making it more accessible for application developers across domains.  
 
 ## Design Goals
-
-1. *Separation*: Object model definition is separated from the framework/language.
+1. *Separation of Concerns*: Seperate protocol development from application development.
 2. *Abstraction*: Complex queries and actions at the protocol layer are abstracted into simple methods at the application layer.
-3. *Extensibility*: Application layer methods can utilize outside services (IPFS, Swarm, etc).
+3. *Extendable*: Through developing an open-standard, it leaves it open for community extensibility.  
+4. *Interoperable*: Application layer run-times provide outside service connections (IPFS, Swarm, etc).  
 
 ## Architecture Specification  
 ![logo](https://github.com/web3bindings/branding/blob/master/architecture.png)

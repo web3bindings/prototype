@@ -2,4 +2,4 @@
 Generate Typescript classes to access the POM.  
 
 ## Example Output  
-Please see `../../application-example/protocol-example.ts/*`.  
+Please see `../../protocol-example.ts/*`.  
