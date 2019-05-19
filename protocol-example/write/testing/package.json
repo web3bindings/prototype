@@ -1,0 +1,13 @@
+{
+  "name": "@web3bindings/protocol-example-write-testing",
+  "version": "0.0.0-alpha",
+  "engines": {
+    "node": ">=9.4.0"
+  },
+  "scripts": {
+    "build": "npx asc Protocol.ts -b build/Protocol.wasm -t build/Protocol.wat --sourceMap --validate --optimize"
+  },
+  "devDependencies": {
+    "assemblyscript": "^0.3.0"
+  }
+}

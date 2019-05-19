@@ -1,1 +1,0 @@
-simple application which uses a generated API of our protocol

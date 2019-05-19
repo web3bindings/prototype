@@ -9,7 +9,7 @@
     "start:env": "npm explore @web3bindings/protocol-example-read -- npm run start:env",
     "stop:env": "npm explore @web3bindings/protocol-example-read -- npm run stop:env",
     "build:deploy": "wait-on tcp:8545 && npm run build && npm run deploy:subgraph",
-    "build": "npm run build:contracts && npm run migrate:contracts && npm run build:read && npm run build:write",
+    "build": "npm run build:contracts && npm run migrate:contracts && npm run build:read",
     "build:contracts": "npm explore @web3bindings/protocol-example-contracts -- npm run build",
     "migrate:contracts": "npm explore @web3bindings/protocol-example-contracts -- npm run migrate",
     "build:read": "npm explore @web3bindings/protocol-example-read -- npm run build",

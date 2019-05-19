@@ -1,5 +1,5 @@
 {
-  "name": "@web3bindings/write-semantics",
+  "name": "@web3bindings/protocol-example-typescript",
   "version": "0.0.0-alpha",
   "engines": {
     "node": ">=9.4.0"
