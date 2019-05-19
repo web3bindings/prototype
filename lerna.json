@@ -2,8 +2,10 @@
   "packages": [
     "application-example/**/*",
     "generator-example/**/*",
-    "protocol-example",
-    "protocol-example/**/*",
+    "protocol-example/protocol/*",
+    "protocol-example/read/*",
+    "protocol-example/write/*",
+    "protocol-example/*",
     "protocol-tooling/**/*"
   ],
   "version": "0.0.0-alpha"
