@@ -1,0 +1,13 @@
+{
+  "name": "@web3bindings/write-semantics",
+  "version": "0.0.0-alpha",
+  "engines": {
+    "node": ">=9.4.0"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "tsc": "^1.20150623.0"
+  }
+}

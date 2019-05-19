@@ -1,7 +1,7 @@
 const path = require('path')
 const subgraphRepo = path.resolve(`${__dirname}/..`)
 const { migrationFileLocation } = require('./settings')
-const migration = require('@web3bindings/example-protocol-contracts/migration.json')
+const migration = require('@web3bindings/protocol-example-contracts/migration.json')
 const fs = require('fs')
 
 async function setupenv () {

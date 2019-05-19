@@ -1,5 +1,5 @@
 {
-  "name": "@web3bindings/example-protocol-read",
+  "name": "@web3bindings/protocol-example-read",
   "version": "0.0.0-alpha",
   "engines": {
     "node": ">=9.4.0"
@@ -7,15 +7,15 @@
   "scripts": {
     "codegen": "node ops/generate-abis.js && node ops/generate-schema.js && node ops/generate-subgraph.js && node ops/graph-codegen.js",
     "deploy": "node ops/setup-env.js",
-    "migrate": "npm explore @web3bindings/example-protocol-contracts -- npm run migrate",
+    "migrate": "npm explore @web3bindings/protocol-example-contracts -- npm run migrate",
     "docker:run": "docker-compose up",
     "docker:stop": "docker-compose down",
-    "postinstall": "npm explore @web3bindings/example-protocol-contracts -- npm run build"
+    "postinstall": "npm explore @web3bindings/protocol-example-contracts -- npm run build"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "^0.12.0",
     "@graphprotocol/graph-ts": "^0.12.0",
-    "@web3bindings/example-protocol-contracts": "0.0.0-alpha"
+    "@web3bindings/protocol-example-contracts": "0.0.0-alpha"
   },
   "devDependencies": {
     "dotenv": "^8.0.0",

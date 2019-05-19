@@ -1,0 +1,14 @@
+{
+  "name": "@web3bindings/ethny-prototype",
+  "version": "0.0.0-alpha",
+  "engines": {
+    "node": ">=9.4.0"
+  },
+  "scripts": {
+    "postinstall": "npx lerna bootstrap",
+    "start": "TODO build & deploy protocol, build and start app"
+  },
+  "devDependencies": {
+    "lerna": "^3.14.1"
+  }
+}

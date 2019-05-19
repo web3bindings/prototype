@@ -2,10 +2,10 @@ const fs = require('fs')
 const path = require('path')
 
 /**
- * Fetch all abis from @web3bindings/example-protocol-contracts into the `abis` folder.
+ * Fetch all abis from @web3bindings/protocol-example-contracts into the `abis` folder.
  */
 async function generateAbis () {
-  var base = require('path').dirname(require.resolve('@web3bindings/example-protocol-contracts/build/contracts/DAONetwork.json'))
+  var base = require('path').dirname(require.resolve('@web3bindings/protocol-example-contracts/build/contracts/DAONetwork.json'))
   if (!fs.existsSync('./abis/')) {
     fs.mkdirSync('./abis/')
   }
