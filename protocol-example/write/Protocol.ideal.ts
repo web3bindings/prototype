@@ -223,7 +223,7 @@ const DAO = {
   createProposal
 };
 
-const Proposal = {
+const ReputationProposal = {
   voteOnProposal
 };
 
@@ -235,6 +235,6 @@ const Member = {
 export {
   DAONetwork,
   DAO,
-  Proposal,
+  ReputationProposal,
   Member
 };

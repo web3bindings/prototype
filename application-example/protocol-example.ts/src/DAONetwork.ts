@@ -1,5 +1,13 @@
 import gql from "graphql-tag";
-import { Entity, WriteMethods } from "@web3bindings/typescript-runtime";
+import { Observable } from "rxjs";
+import {
+  Entity,
+  WriteMethods,
+  ProtocolContext
+} from "@web3bindings/typescript-runtime";
+import {
+  DAO
+} from "./DAO";
 
 export interface DAONetworkData {
   address: string;
@@ -23,7 +31,6 @@ export class DAONetwork implements Entity<DAONetworkData> {
         address
       }
     }`;
-
     const itemMap = (item: any): DAONetworkData => {
       if (item === null) {
         throw Error(`Could not find a DAONetwork with id ${this.id}`);
@@ -32,7 +39,6 @@ export class DAONetwork implements Entity<DAONetworkData> {
         address: item.address
       };
     };
-
     return this.context.getObservableObject(query, itemMap);
   }
 
@@ -43,8 +49,8 @@ export class DAONetwork implements Entity<DAONetworkData> {
       }) {
         id
       }
-    }`
-    const itemMap = (item: any): DAO => new DAO(item.id);
+    }`;
+    const itemMap = (item: any): DAO => new DAO(item.id, this.context);
     return this.context.getObservableObject(query, itemMap);
   }
 
@@ -52,6 +58,10 @@ export class DAONetwork implements Entity<DAONetworkData> {
     name: string,
     founders: Founder[]
   ): void {
-    WriteMethods.createDAO(name, founders, this);
+    WriteMethods.createDAO(
+      name,
+      founders,
+      this
+    );
   }
 }
