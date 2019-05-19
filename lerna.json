@@ -1,10 +1,10 @@
 {
+  "lerna": "3.14.1",
   "packages": [
-    "application-example/**/*",
-    "generator-example/**/*",
-    "protocol-example",
-    "protocol-example/**/*",
-    "protocol-tooling/**/*"
+    "application-example/**",
+    "generator-example/**",
+    "protocol-example/**",
+    "protocol-tooling/**"
   ],
   "version": "0.0.0-alpha"
 }
