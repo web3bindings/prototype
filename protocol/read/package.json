@@ -8,7 +8,7 @@
     "codegen": "node ops/generate-abis.js && node ops/generate-schema.js && node ops/generate-subgraph.js && node ops/graph-codegen.js",
     "deploy": "node ops/setup-env.js",
     "migrate": "npm explore @web3bindings/example-protocol-contracts -- npm run migrate",
-    "docker:run": "docker-compose up -d",
+    "docker:run": "docker-compose up",
     "docker:stop": "docker-compose down",
     "postinstall": "npm explore @web3bindings/example-protocol-contracts -- npm run build"
   },

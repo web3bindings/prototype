@@ -6,7 +6,7 @@ import {
   ReputationProposalCreated,
   ReputationProposalExecuted,
   VoteCast
-} from "../../types/DAONetwork/DAONetwork";
+} from "../types/DAONetwork/DAONetwork";
 import {
   insertNewDAO
 } from "./dao";
@@ -46,7 +46,7 @@ export function handleMintReputation(event: MintReputation): void {
 
 export function handleBurnReputation(event: BurnReputation): void {
   updateTotalSupply(event.params._avatar);
-  subReputation(event.params._from, event.params._aount);
+  subReputation(event.params._from, event.params._amount);
 }
 
 export function handleReputationProposalCreated(event: ReputationProposalCreated): void {

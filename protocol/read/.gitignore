@@ -3,3 +3,4 @@ abis
 schema.graphql
 subgraph.yaml
 src/types
+build

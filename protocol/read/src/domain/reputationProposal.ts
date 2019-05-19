@@ -21,7 +21,7 @@ function fetchIPFSData(proposal: Proposal): void {
     if (ipfsData != null && ipfsData.toString() !== '{}') {
       let descJson = json.fromBytes(ipfsData as Bytes);
       if (descJson.kind !== JSONValueKind.OBJECT) {
-        return proposal;
+        return;
       }
       if (descJson.toObject().get('title') != null) {
         proposal.title = descJson.toObject().get('title').toString();
@@ -43,7 +43,8 @@ export function insertNewProposal(
   beneficiary: Address
 ): Proposal {
   let proposal = getProposal(proposalId.toHex());
-  proposal.dao = store.get("DAO", avatarAddress.toHex()) as DAO;
+  let dao = store.get("DAO", avatarAddress.toHex()) as DAO;
+  proposal.dao = dao.id;
   proposal.active = true;
   proposal.proposer = proposer;
   proposal.createdAt = createdAt;
@@ -52,6 +53,7 @@ export function insertNewProposal(
   proposal.reputationChange = reputationChange;
   fetchIPFSData(proposal);
   saveProposal(proposal);
+  return proposal;
 }
 
 export function executeProposal(

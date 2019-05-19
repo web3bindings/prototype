@@ -1,5 +1,5 @@
 import { Address, BigInt, Bytes, store } from "@graphprotocol/graph-ts";
-import { DAO, Proposal, Vote } from "../types/schema";
+import { DAO, ReputationProposal, Vote } from "../types/schema";
 
 function getVote(id: string): Vote {
   let vote = store.get("Vote", id) as Vote;
@@ -22,10 +22,13 @@ export function insertNewVote(
   amount: BigInt
 ): Vote {
   let vote = getVote(eventId);
+  let proposal = store.get("Proposal", proposalId.toHex()) as ReputationProposal;
+  let dao = store.get("DAO", avatarAddress.toHex()) as DAO;
   vote.createdAt = createdAt;
   vote.voter = voter;
-  vote.proposal = store.get("Proposal", proposalId.toHex()) as Proposal;
-  vote.dao = store.get("DAO", avatarAddress.toHex()) as DAO;
+  vote.proposal = proposal.id;
+  vote.dao = dao.id;
   vote.reputation = amount;
   saveVote(vote);
+  return vote;
 }

@@ -1,14 +1,14 @@
 import { Address, store } from "@graphprotocol/graph-ts";
 import { hexToAddress } from "../utils";
 import { Reputation, DAO } from "../types/schema";
-import { Avatar } from "../types/Avatar";
-import { Reputation as ReputationContract } from "../types/Reputation";
+import { Avatar } from "../types/DAONetwork/Avatar";
+import { Reputation as ReputationContract } from "../types/DAONetwork/Reputation";
 
 export function getReputation(id: string): Reputation {
   let reputation = store.get("Reputation", id) as Reputation;
   if (reputation == null) {
     reputation = new Reputation(id);
-    reputation.address = id;
+    reputation.address = Address.fromHexString(id);
     let reputationContract = ReputationContract.bind(hexToAddress(id));
     reputation.totalSupply = reputationContract.totalSupply();
     store.set("Reputation", id, reputation);
@@ -22,7 +22,7 @@ function saveReputation(reputation: Reputation): void {
 
 export function setDAO(id: string, dao: DAO): void {
   let reputation = getReputation(id);
-  reputation.dao = dao;
+  reputation.dao = dao.id;
   saveReputation(reputation);
 }
 
