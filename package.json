@@ -6,7 +6,10 @@
   },
   "scripts": {
     "postinstall": "npx lerna bootstrap",
-    "start": "TODO build & deploy protocol, build and start app"
+    "start": "npm run start:protocol && npm run start:app",
+    "start:app": "",
+    "start:protocol": "cd ./protocol-example && npm run start && cd ../",
+    "build:protocol": "cd ./protocol-example && npm run build && cd ../"
   },
   "devDependencies": {
     "lerna": "^3.14.1"

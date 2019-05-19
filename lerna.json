@@ -2,6 +2,7 @@
   "packages": [
     "application-example/**/*",
     "generator-example/**/*",
+    "protocol-example",
     "protocol-example/**/*",
     "protocol-tooling/**/*"
   ],

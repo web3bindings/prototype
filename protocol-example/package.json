@@ -5,8 +5,24 @@
     "node": ">=9.4.0"
   },
   "scripts": {
-    "start:env": "TODO start docker",
-    "build": "TODO build protocol, migrate contracts, read, write",
-    "deploy:subgraph": "deploy subgraph"
+    "start": "concurrently \"npm:start:env\" \"npm:build:deploy\"",
+    "start:env": "npm explore @web3bindings/protocol-example-read -- npm run start:env",
+    "stop:env": "npm explore @web3bindings/protocol-example-read -- npm run stop:env",
+    "build:deploy": "wait-on tcp:8545 && npm run build && npm run deploy:subgraph",
+    "build": "npm run build:contracts && npm run migrate:contracts && npm run build:read && npm run build:write",
+    "build:contracts": "npm explore @web3bindings/protocol-example-contracts -- npm run build",
+    "migrate:contracts": "npm explore @web3bindings/protocol-example-contracts -- npm run migrate",
+    "build:read": "npm explore @web3bindings/protocol-example-read -- npm run build",
+    "build:write": "npm explore @web3bindings/protocol-example-write -- npm run build",
+    "deploy:subgraph": "npm explore @web3bindings/protocol-example-read -- npm run deploy"
+  },
+  "dependencies": {
+    "@web3bindings/protocol-example-contracts": "0.0.0-alpha",
+    "@web3bindings/protocol-example-read": "0.0.0-alpha",
+    "@web3bindings/protocol-example-write": "0.0.0-alpha"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "wait-on": "^3.2.0"
   }
 }
