@@ -25,15 +25,15 @@ Together, the Web3Bindings POM and API Generator makes contract protocols access
 ## Architecture Specification  
 ![logo](https://github.com/web3bindings/branding/blob/master/architecture.png)
 ### Contract Metadata: Protocol Object Model (POM)
-The POM represents a protocol with a logical tree. The contract metadata has two parts: 'read' (i.e.  ) and 'write' (i.e. ). Both parts refer to a shared ontology defined by the protocol. The POM pulls from the root contract ABIs.
+The POM represents a protocol with a logical graph. The contract metadata has two parts: 'read' (i.e.  ) and 'write' (i.e. ). Both parts refer to a shared ontology defined by the protocol. The POM pulls from the root contract ABIs.
 
 #### Read Semantics  
-The goal of the 'read' semantics is to ???
+The goal of the 'read' semantics is to define structured *queries* over your contract data.
 
 The semantic creates a Subgraph module with an GraphQL Schema and Mapping File.
 
 #### Write Semantics  
-The goal of the 'write' semantics is to ???
+The goal of the 'write' semantics is to bundle complex contract transactions (and external service interactions) into simple *actions* for the application developer to use.
 
 The semantic ([`Proposal.create("infomation", imageByteCode, 5ETH)`]) sits in a runtime environment (WASM module) that provides methods (ABI.json), contract code comments (RADSPEC), and service connection (IPFS, Web3, etc).
 
