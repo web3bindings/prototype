@@ -22,6 +22,8 @@ services:
     build: docker/ipfs
     ports:
       - '5001:5001'
+    logging:
+      driver: none
   postgres:
     build: docker/postgres
     ports:
@@ -29,6 +31,6 @@ services:
     environment:
       POSTGRES_PASSWORD: letmein
   ganache:
-    image: 'daostack/migration:0.0.1-rc.16-v1'
+    image: trufflesuite/ganache-cli
     ports:
       - '8545:8545'
