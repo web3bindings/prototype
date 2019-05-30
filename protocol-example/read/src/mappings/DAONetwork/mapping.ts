@@ -1,6 +1,6 @@
 import {
   NewDAO,
-  RegisterFounder,
+  RegisterFounders,
   MintReputation,
   BurnReputation,
   ReputationProposalCreated,
@@ -14,8 +14,8 @@ export function handleNewDAO(event: NewDAO): void {
   domain.handleNewDAO(event);
 }
 
-export function handleRegisterFounder(event: RegisterFounder): void {
-  domain.handleRegisterFounder(event);
+export function handleRegisterFounders(event: RegisterFounders): void {
+  domain.handleRegisterFounders(event);
 }
 
 export function handleMintReputation(event: MintReputation): void {

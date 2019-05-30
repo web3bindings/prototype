@@ -5,11 +5,14 @@
     "node": ">=9.4.0"
   },
   "scripts": {
-    "build": "truffle compile",
-    "test": "truffle test",
-    "migrate": "truffle migrate"
+    "build": "npx truffle compile",
+    "test": "npx truffle test",
+    "migrate": "npx truffle migrate"
   },
   "dependencies": {
     "openzeppelin-solidity": "2.1.3"
+  },
+  "devDependencies": {
+    "truffle": "^5.0.19"
   }
 }

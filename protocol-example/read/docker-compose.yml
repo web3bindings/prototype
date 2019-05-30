@@ -34,3 +34,4 @@ services:
     image: trufflesuite/ganache-cli
     ports:
       - '8545:8545'
+    command: -m "myth like bonus scare over problem client lizard pioneer submit female collect"

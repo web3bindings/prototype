@@ -5,8 +5,8 @@ abis:
 eventHandlers:
   - event: NewDAO(address,address)
     handler: handleNewDAO
-  - event: RegisterFounder(address,address)
-    handler: handleRegisterFounder
+  - event: RegisterFounders(address,address[])
+    handler: handleRegisterFounders
   - event: MintReputation(address,address,uint256,address)
     handler: handleMintReputation
   - event: BurnReputation(address,address,uint256,address)

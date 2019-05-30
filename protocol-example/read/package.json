@@ -10,6 +10,8 @@
     "migrate": "npm explore @web3bindings/protocol-example-contracts -- npm run migrate",
     "start:env": "docker-compose up",
     "stop:env": "docker-compose down",
+    "test": "npm run deploy && npm run jest",
+    "jest": "jest --runInBand --forceExit",
     "postinstall": "npm explore @web3bindings/protocol-example-contracts -- npm run build"
   },
   "dependencies": {
@@ -18,7 +20,38 @@
     "@web3bindings/protocol-example-contracts": "0.0.0-alpha"
   },
   "devDependencies": {
+    "@types/jest": "^24.0.13",
     "dotenv": "^8.0.0",
-    "spawn-command": "0.0.2-1"
+    "ethereumjs-wallet": "^0.6.3",
+    "hdwallet-accounts": "0.0.1",
+    "jest": "^24.8.0",
+    "spawn-command": "0.0.2-1",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.4.5",
+    "web3": "1.0.0-beta.37"
+  },
+  "jest": {
+    "roots": [
+      "<rootDir>/src",
+      "<rootDir>/test"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "./test/tsconfig.json"
+      }
+    },
+    "testEnvironment": "node",
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(ts|js)?$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
   }
 }

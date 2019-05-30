@@ -1,6 +1,6 @@
 import {
   NewDAO,
-  RegisterFounder,
+  RegisterFounders,
   MintReputation,
   BurnReputation,
   ReputationProposalCreated,
@@ -29,14 +29,17 @@ import {
 import {
   eventId
 } from "../utils";
+import { Address } from "@graphprotocol/graph-ts";
 
 export function handleNewDAO(event: NewDAO): void {
   insertNewDAO(event.address, event.params._avatar);
 }
 
-export function handleRegisterFounder(event: RegisterFounder): void {
+export function handleRegisterFounders(event: RegisterFounders): void {
   updateTotalSupply(event.params._avatar);
-  insertNewMember(event.params._avatar, event.params._founder);
+  event.params._founders.forEach((founder: Address) => {
+    insertNewMember(event.params._avatar, founder);
+  });
 }
 
 export function handleMintReputation(event: MintReputation): void {

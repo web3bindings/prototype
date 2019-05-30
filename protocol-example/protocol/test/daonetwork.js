@@ -12,7 +12,7 @@ const setup = async function(accounts) {
   reputation = await Reputation.new();
   await reputation.mint(accounts[0], 500);
   await reputation.mint(accounts[1], 500);
-  await reputation.mint(accounts[3], 500);
+  await reputation.mint(accounts[2], 500);
   await reputation.transferOwnership(daoNetwork.address);
   avatar = await Avatar.new("Test DAO", reputation.address);
   await avatar.transferOwnership(daoNetwork.address);
@@ -22,8 +22,8 @@ const deployDAO = async function() {
   return await daoNetwork.newDAO(avatar.address);
 }
 
-const registerFounder = async function(founder) {
-  return await daoNetwork.registerFounder(avatar.address, founder);
+const registerFounders = async function(founders) {
+  return await daoNetwork.registerFounders(avatar.address, founders);
 }
 
 const createProposal = async function(accounts, repChange=-500) {
@@ -62,17 +62,19 @@ contract("DAONetwork", accounts => {
     await setup(accounts);
     await deployDAO();
 
-    const tx = await registerFounder(accounts[0]);
+    const tx = await registerFounders([
+      accounts[0], accounts[1], accounts[2]
+    ]);
 
     assert.equal(tx.logs.length, 1);
-    assert.equal(tx.logs[0].event, "RegisterFounder");
+    assert.equal(tx.logs[0].event, "RegisterFounders");
     assert.equal(
       helpers.getValueFromLogs(tx, "_avatar"),
       avatar.address
     );
-    assert.equal(
-      helpers.getValueFromLogs(tx, "_founder"),
-      accounts[0]
+    assert.deepEqual(
+      helpers.getValueFromLogs(tx, "_founders"),
+      [accounts[0], accounts[1], accounts[2]]
     );
   });
 

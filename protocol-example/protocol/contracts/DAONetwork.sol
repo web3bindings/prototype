@@ -43,9 +43,9 @@ contract DAONetwork {
     address indexed _avatar
   );
 
-  event RegisterFounder(
+  event RegisterFounders(
     address indexed _avatar,
-    address indexed _founder
+    address[] _founders
   );
 
   event MintReputation(
@@ -85,17 +85,34 @@ contract DAONetwork {
   );
 
   modifier votable(Avatar _avatar, bytes32 _proposalId) {
-    require(daos[address(_avatar)].proposals[_proposalId].open);
+    require(daos[address(_avatar)].proposals[_proposalId].open,
+            "Proposal must be votable (open)");
     _;
   }
 
   modifier onlyMember(Avatar _avatar, address _member) {
-    require(daos[address(_avatar)].reputation.balanceOf(_member) > 0);
+    require(daos[address(_avatar)].reputation.balanceOf(_member) > 0,
+            "Address is not a reputation holder");
+    _;
+  }
+
+  modifier onlyMembers(
+    Avatar _avatar,
+    address[] memory _members
+  ) {
+    uint length = _members.length;
+    Reputation reputation = daos[address(_avatar)].reputation;
+
+    for (uint i = 0; i < length; ++i) {
+      require(reputation.balanceOf(_members[i]) > 0,
+              "Address is not a reputation holder");
+    }
     _;
   }
 
   modifier hasntVoted(Avatar _avatar, bytes32 _proposalId, address _member) {
-    require(!daos[address(_avatar)].proposals[_proposalId].voters[_member]);
+    require(!daos[address(_avatar)].proposals[_proposalId].voters[_member],
+            "Address has already voted on proposal");
     _;
   }
 
@@ -105,17 +122,19 @@ contract DAONetwork {
    */
   function newDAO(Avatar _avatar) external
   {
-    // Avatar must not be in use
-    require(!avatars[address(_avatar)]);
+    require(!avatars[address(_avatar)],
+            "Avatar must not already be in use");
     avatars[address(_avatar)] = true;
 
-    require(_avatar.owner() == address(this));
+    require(_avatar.owner() == address(this),
+            "Avatar must be owned by the DAONetwork");
 
     Reputation reputation = _avatar.nativeReputation();
-    require(reputation.owner() == address(this));
+    require(reputation.owner() == address(this),
+            "Reputation must be owned by the DAONetwork");
 
-    // Reputation must not be in use
-    require(!reputations[address(reputation)]);
+    require(!reputations[address(reputation)],
+            "Reputation must not be in use");
     reputations[address(reputation)] = true;
 
     daos[address(_avatar)].reputation = reputation;
@@ -123,16 +142,16 @@ contract DAONetwork {
     emit NewDAO(msg.sender, address(_avatar));
   }
 
-  function registerFounder(
+  function registerFounders(
     Avatar _avatar,
-    address payable _founder
+    address[] calldata _founders
   )
   external
-  onlyMember(_avatar, _founder)
+  onlyMembers(_avatar, _founders)
   {
-    emit RegisterFounder(
+    emit RegisterFounders(
       address(_avatar),
-      _founder
+      _founders
     );
   }
 
